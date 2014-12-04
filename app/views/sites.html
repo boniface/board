@@ -1,0 +1,147 @@
+<!-- general form elements -->
+<div class="box box-primary" ng-controller="SitesCtrl">
+  <div class="box-header">
+    <h3 class="box-title">Add Site</h3>
+  </div>
+  <!-- /.box-header -->
+  <!-- form start -->
+  <form novalidate name="siteForm" role="form" class="css-form">
+    <div class="box-body">
+      <div class="form-group">
+        <label for="name">SITE Name: </label>
+        <input type="text"
+               ng-model="site.name" required="true"
+               autocomplete="off"
+               class="form-control"
+               id="name"
+               placeholder="Enter Site Name">
+      </div>
+      <div class="form-group">
+        <label for="url">SITE URL: </label>
+        <input type="text"
+               ng-model="site.url" required="true"
+               autocomplete="off"
+               class="form-control"
+               id="url"
+               placeholder="Enter Site URL">
+      </div>
+
+      <div class="form-group">
+        <label for="name">SITE Description: </label>
+        <input type="text"
+               ng-model="site.description" required="true"
+               autocomplete="off"
+               class="form-control"
+               id="description"
+               placeholder="Enter Site Name">
+      </div>
+
+
+      <div class="form-group">
+        <label for="zone">ZONE Code: </label>
+        <input type="text"
+               ng-model="site.zone" required="true"
+               autocomplete="off"
+               ng-minlength="2"
+               ng-maxlength="2"
+               class="form-control"
+               id="zone"
+               placeholder="Enter Code">
+      </div>
+
+      <div class="form-group">
+        <label for="flag">SITE Logo: </label>
+        <input type="file"
+               file-model="site.file"
+               class="form-control"
+               id="flag">
+
+        <p class="help-block">Add Information for The Site.</p>
+      </div>
+
+    </div>
+
+    <div class="btn-group btn-group-lg">
+      <button name="submit"
+              type="button"
+              ng-click="cancelSite()"
+              class="btn btn-primary btn-lg">Cancel
+      </button>
+      <button name="submit"
+              ng-click="resetSite()"
+              ng-disabled="isUnchanged(site)"
+              type="button"
+              class="btn btn-primary btn-lg">Reset
+      </button>
+      <button name="submit"
+              ng-click="saveEditSite(site)"
+              ng-disabled="siteForm.$invalid || isUnchanged(site)"
+              type="button"
+              class="btn btn-primary btn-lg btn-success">{{submitButtonMode}}
+      </button>
+
+    </div>
+  </form>
+  <!-- /.box-body -->
+  <hr/>
+
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Sites</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive">
+      <table id="example1" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>Number</th>
+          <th>Logo</th>
+          <th>Zone</th>
+          <th>Name</th>
+          <th>URL</th>
+          <th>Description</th>
+          <th>Edit</th>
+          <th>Delete</th>
+
+        </tr>
+        </thead>
+        <tbody ng-repeat="site in sites track by $index">
+
+        <tr>
+          <td>{{$index+1}}</td>
+          <td>{{site.logo}}</td>
+          <td>{{site.zone}}</td>
+          <td>{{site.name}}</td>
+          <td>{{site.url}}</td>
+          <td>{{site.description}}</td>
+          <td><button class="btn btn-xs btn-primary"
+                      ng-click="editSite(site)">
+            Edit
+          </button></td>
+          <td><button class="btn btn-xs btn-primary"
+                      ng-click="deleteSite(site)">
+            Delete
+          </button></td>
+        </tr>
+
+        </tbody>
+        <tfoot>
+        <tr>
+          <th>Number</th>
+          <th>Logo</th>
+          <th>Zone</th>
+          <th>Name</th>
+          <th>URL</th>
+          <th>Description</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+
+</div><!-- /.box -->
+

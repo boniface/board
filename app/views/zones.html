@@ -1,0 +1,122 @@
+<!-- general form elements -->
+<div class="box box-primary" ng-controller="ZonesCtrl">
+    <div class="box-header">
+        <h3 class="box-title">Add Zone</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form novalidate name="zoneForm" role="form" class="css-form">
+        <div class="box-body">
+            <div class="form-group">
+                <label for="name">ZONE Name: </label>
+                <input type="text"
+                       ng-model="zone.name" required="true"
+                       autocomplete="off"
+                       class="form-control"
+                       id="name"
+                       placeholder="Enter Zone Name">
+            </div>
+            <div class="form-group">
+                <label for="code">ZONE Code: </label>
+                <input type="text"
+                       ng-model="zone.code" required="true"
+                       autocomplete="off"
+                       ng-minlength="2"
+                       ng-maxlength="2"
+                       class="form-control"
+                       id="code"
+                       placeholder="Enter Code">
+            </div>
+            <div class="form-group">
+                <label for="flag">ZONE Flag: </label>
+                <input type="file"
+                   file-model="zone.file"
+                  class="form-control"
+                       id="flag">
+
+                <p class="help-block">Add Information for The Zone.</p>
+            </div>
+
+        </div>
+
+
+        <div class="btn-group btn-group-lg">
+            <button name="submit"
+                    type="button"
+                    ng-click="cancelZone()"
+                    class="btn btn-primary btn-lg">Cancel
+            </button>
+            <button name="submit"
+                    ng-click="resetZone()"
+                    ng-disabled="isUnchanged(zone)"
+                    type="button"
+                    class="btn btn-primary btn-lg">Reset
+            </button>
+            <button name="submit"
+                    ng-click="saveEditZone(zone)"
+                    ng-disabled="zoneForm.$invalid || isUnchanged(zone)"
+                    type="button"
+                    class="btn btn-primary btn-lg btn-success">{{submitButtonMode}}
+            </button>
+
+        </div>
+    </form>
+    <!-- /.box-body -->
+    <hr/>
+
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Zones</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Flag</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Status</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+
+                </tr>
+                </thead>
+                <tbody ng-repeat="zone in zones">
+
+                <tr>
+                    <td>{{$index+1}}</td>
+                    <td>{{zone.flag}}</td>
+                    <td>{{zone.name}}</td>
+                    <td>{{zone.code}}</td>
+                    <td>{{zone.status}}</td>
+                    <td><button class="btn btn-xs btn-primary"
+                                ng-click="editZone(zone)">
+                        Edit
+                    </button></td>
+                    <td><button class="btn btn-xs btn-primary"
+                                ng-click="deleteZone(zone)">
+                        Delete
+                    </button></td>
+                </tr>
+
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th>Number</th>
+                    <th>Flag</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Status</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+
+</div><!-- /.box -->
