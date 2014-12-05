@@ -83,7 +83,7 @@
 
                 </tr>
                 </thead>
-                <tbody ng-repeat="zone in zones">
+                <tbody ng-repeat="zone in zones track by $index">
 
                 <tr>
                     <td>{{$index+1}}</td>

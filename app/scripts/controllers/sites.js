@@ -8,9 +8,9 @@
  * Controller of the boardApp
  */
 angular.module('boardApp')
-  .controller('SitesCtrl', function ($scope,$http,baseURL,$resource) {
+  .controller('SitesCtrl', function ($scope,$http,baseURL) {
     $scope.submitButtonMode = 'Save Site';
-    $scope.submitSite = $resource(baseURL+'site/create/ZM' + ':id',{ id: '@id' });
+
 
     $scope.listSites = function(){
       var url = baseURL+'sites/all/0';
@@ -19,27 +19,32 @@ angular.module('boardApp')
       });
     };
 
-    $scope.createSite = function(site){
-//            var file = $scope.zone.file;
-
+    $scope.createSite = function (site) {
+//            var file = $scope.feed.file;
+      var URL = baseURL + 'site/create/';
       $scope.sform = site;
-      $scope.sform.logo='none';
+      $scope.sform.logo = 'none';
+      $http.post(
+        URL + site.zone,   site)
+        .success(function (newSite) {
+          $scope.sites.push(newSite);
+          $scope.site = {};
+          $scope.siteForm.$setPristine();
 
-      new $scope.submitSite(site).$save().then(function (site){
-        $scope.sites.push(site);
-        $scope.site ={};
-        $scope.siteForm.$setPristine();
-      } );
+        });
     };
 
+
+
+    // /api/site/update/:zone/:id
     $scope.updateSite = function(site){
-      var URL = baseURL+'zone/';
+      var URL = baseURL+'site/update/'+site.zone+'/';
       $http({
         url: URL + site.id,
         method: 'PUT',
         data: site
       }).success(function (updateSite) {
-        for (var i = 0; i < $scope.zones.length; i++) {
+        for (var i = 0; i < $scope.sites.length; i++) {
           if ($scope.sites[i].id === updateSite.id) {
             $scope.sites[i] = updateSite;
             break;
@@ -52,8 +57,9 @@ angular.module('boardApp')
 
     };
 
+    // /api/site/delete/:zone/:id
     $scope.deleteSite = function(site){
-      var URL = baseURL+'site/delete/';
+      var URL = baseURL+'site/delete/'+site.zone+'/';
       $http({
         method: 'DELETE',
         url: URL + site.id

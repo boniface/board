@@ -115,7 +115,7 @@
 
                 </tr>
                 </thead>
-                <tbody ng-repeat="feed in feeds">
+                <tbody ng-repeat="feed in feeds track by $index">
 
                 <tr>
                     <td>{{$index+1}}</td>

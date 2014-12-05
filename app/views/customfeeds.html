@@ -1,1 +1,160 @@
-<p>This is the customfeeds view.</p>
+<!-- general form elements -->
+<div class="box box-primary" ng-controller="CustomfeedsCtrl">
+  <div class="box-header">
+    <h3 class="box-title">Add Custom Feed</h3>
+  </div>
+  <!-- /.box-header -->
+  <!-- form start -->
+  <form novalidate name="customFeedForm" role="form" class="css-form">
+    <div class="box-body">
+      <div class="form-group">
+        <label for="customFeedZone">Custom FEED Zone: </label>
+        <input type="text"
+               ng-model="customFeed.zone" required="true"
+               autocomplete="off"
+               ng-minlength="2"
+               ng-maxlength="2"
+               class="form-control"
+               id="customFeedZone"
+               placeholder="Enter Feed Zone">
+      </div>
+      <div class="form-group">
+        <label for="siteCode">Custom SITE Code: </label>
+        <input type="text"
+               ng-model="customFeed.siteCode" required="true"
+               autocomplete="off"
+               ng-minlength="2"
+               ng-maxlength="2"
+               class="form-control"
+               id="siteCode"
+               placeholder="Enter Site Code">
+      </div>
+      <div class="form-group">
+        <label for="feedLink">Custom FEED Link: </label>
+        <input type="text"
+               ng-model="customFeed.feedLink" required="true"
+               autocomplete="off"
+               class="form-control"
+               id="feedLink"
+               placeholder="Enter Feed Link">
+      </div>
+
+      <div class="form-group">
+        <label for="feedSite">Custom FEED Site: </label>
+        <input type="text"
+               ng-model="customFeed.feedSite" required="true"
+               autocomplete="off"
+               class="form-control"
+               id="feedSite"
+               placeholder="Enter Feed Type">
+      </div>
+      <div class="form-group">
+        <label for="feedFilter">Custom FEED Filter: </label>
+        <input type="text"
+               ng-model="customFeed.filter" required="true"
+               autocomplete="off"
+               class="form-control"
+               id="feedFilter"
+               placeholder="Enter Feed Filter">
+      </div>
+
+      <div class="form-group">
+        <label for="flag">Custom FEED Logo: </label>
+        <input type="file"
+               file-model="customFeed.siteLogo"
+               class="form-control"
+               id="flag">
+
+        <p class="help-block">Add Information for The Custom FEED.</p>
+      </div>
+
+    </div>
+
+
+    <div class="btn-group btn-group-lg">
+      <button name="submit"
+              type="button"
+              ng-click="cancelFeed()"
+              class="btn btn-primary btn-lg">Cancel
+      </button>
+      <button name="submit"
+              ng-click="resetFeed()"
+              ng-disabled="isUnchanged(customFeed)"
+              type="button"
+              class="btn btn-primary btn-lg">Reset
+      </button>
+      <button name="submit"
+              ng-click="saveEditFeed(customFeed)"
+              ng-disabled="customFeedForm.$invalid || isUnchanged(customFeed)"
+              type="button"
+              class="btn btn-primary btn-lg btn-success">{{submitButtonMode}}
+      </button>
+
+    </div>
+  </form>
+  <!-- /.box-body -->
+  <hr/>
+
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Feeds</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive">
+      <table id="example1" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>Number</th>
+          <th>Logo</th>
+          <th>Zone</th>
+          <th>Filter</th>
+          <th>Site Code</th>
+          <th>Site</th>
+          <th>Link</th>
+          <th>Edit</th>
+          <th>Delete</th>
+
+        </tr>
+        </thead>
+        <tbody ng-repeat="cfeed in cfeeds track by $index">
+
+        <tr>
+          <td>{{$index+1}}</td>
+          <td>{{cfeed.siteLogo}}</td>
+          <td>{{cfeed.zone}}</td>
+          <td>{{cfeed.filter}}</td>
+          <td>{{cfeed.siteCode}}</td>
+          <td>{{cfeed.feedSite}}</td>
+          <td>{{cfeed.feedLink}}</td>
+          <td><button class="btn btn-xs btn-primary"
+                      ng-click="editFeed(cfeed)">
+            Edit
+          </button></td>
+          <td><button class="btn btn-xs btn-primary"
+                      ng-click="deleteFeed(cfeed)">
+            Delete
+          </button></td>
+        </tr>
+
+        </tbody>
+        <tfoot>
+        <tr>
+          <th>Number</th>
+          <th>Logo</th>
+          <th>Zone</th>
+          <th>Type</th>
+          <th>Site Code</th>
+          <th>Site</th>
+          <th>Link</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+
+</div><!-- /.box -->
+
