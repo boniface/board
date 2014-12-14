@@ -60,7 +60,7 @@ angular.module('boardApp')
       var URL = baseURL + 'cfeed/delete/';
       $http({
         method: 'DELETE',
-        url: URL + customFeed.zone + '/' + customFeed.id
+        url: URL + customFeed.zone + '/' + customFeed.siteCode +'/'+customFeed.id
       }).success(function () {
         $scope.cfeeds.splice($scope.cfeeds.indexOf(customFeed), 1);
       });
@@ -68,7 +68,6 @@ angular.module('boardApp')
 
     $scope.editFeed = function (customFeed) {
 
-      console.log(" Data to be Edited is ", customFeed)
       $scope.customFeed = customFeed ? angular.copy(customFeed) : {};
       $scope.submitButtonMode = 'Edit Feed';
 

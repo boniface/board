@@ -55,6 +55,22 @@ angular
         templateUrl: 'views/customfeeds.html',
         controller: 'CustomfeedsCtrl'
       })
+      .when('/links', {
+        templateUrl: 'views/links.html',
+        controller: 'LinksCtrl'
+      })
+      .when('/clinks', {
+        templateUrl: 'views/clinks.html',
+        controller: 'ClinksCtrl'
+      })
+      .when('/posts', {
+        templateUrl: 'views/posts.html',
+        controller: 'PostsCtrl'
+      })
+      .when('/errors', {
+        templateUrl: 'views/errors.html',
+        controller: 'ErrorsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
