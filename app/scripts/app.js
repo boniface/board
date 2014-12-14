@@ -55,19 +55,19 @@ angular
         templateUrl: 'views/customfeeds.html',
         controller: 'CustomfeedsCtrl'
       })
-      .when('/links', {
+      .when('/hash/links', {
         templateUrl: 'views/links.html',
         controller: 'LinksCtrl'
       })
-      .when('/clinks', {
+      .when('/hash/clinks', {
         templateUrl: 'views/clinks.html',
         controller: 'ClinksCtrl'
       })
-      .when('/posts', {
+      .when('/hash/posts', {
         templateUrl: 'views/posts.html',
         controller: 'PostsCtrl'
       })
-      .when('/errors', {
+      .when('/hash/errors', {
         templateUrl: 'views/errors.html',
         controller: 'ErrorsCtrl'
       })
