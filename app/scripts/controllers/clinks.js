@@ -10,6 +10,8 @@
 angular.module('boardApp')
   .controller('ClinksCtrl', function ($scope, $http, baseURL)  {
 
+    var z = $scope.selectedZone='ZM';
+
     $scope.listZones = function () {
       var url = baseURL + 'zones';
       $http.get(url).success(function (data) {
@@ -24,6 +26,9 @@ angular.module('boardApp')
       });
     };
 
+    $scope.listZones();
+
+    $scope.customLinks(z);
 
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

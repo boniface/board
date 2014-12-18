@@ -24,6 +24,8 @@ angular.module('boardApp')
       });
     };
 
+    $scope.feedLinks('ZM');
+
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

@@ -25,6 +25,8 @@ angular.module('boardApp')
       });
     };
 
+    $scope.zoneRrrors('ZM')
+
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
