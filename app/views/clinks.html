@@ -1,0 +1,54 @@
+<div class="box box-primary" ng-controller="ClinksCtrl">
+  <div class="box-header">
+    <h3 class="box-title">Select Country</h3>
+
+    <div><p>selected item is : {{selectedItem.code}}</p>
+        <select ng-model="selectedItem" ng-options="zone.name for zone in zones">
+      </select> </div>
+
+    {{selectedZone=selectedItem.code}}
+
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Custom Links</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Number</th>
+            <th>Date</th>
+            <th>Site Code</th>
+            <th>Title</th>
+          </tr>
+          </thead>
+
+          <tbody ng-repeat="clink in clinks ">
+
+          <tr>
+            <td>{{$index+1}}</td>
+            <td>{{clink.datePublished | date:'medium'}}</td>
+            <td>{{clink.siteCode}}</td>
+            <td><a href="{{clink.url}}">{{clink.title}}</a></td>
+
+
+
+          </tr>
+
+          </tbody>
+          <tfoot>
+          <tr>
+            <th>Number</th>
+            <th>Date</th>
+            <th>Site Code</th>
+            <th>Title</th>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+
+  </div>
+  </div>

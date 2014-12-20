@@ -1,0 +1,48 @@
+<div class="box box-primary" ng-controller="ErrorsCtrl">
+  <div class="box-header">
+    <h3 class="box-title">Select Country</h3>
+
+    <div><p>selected item is : {{selectedItem.code}}</p>
+      <select ng-model="selectedItem" ng-options="zone.name for zone in zones">
+      </select> </div>
+
+    {{selectedZone=selectedItem.code}}
+
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">ZONE ERRORS</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Number</th>
+            <th>Date</th>
+            <th>Site</th>
+            <th>Error Message</th>
+          </tr>
+          </thead>
+
+          <tbody ng-repeat="error in errors">
+          <tr>
+            <td>{{$index+1}}</td>
+            <td>{{error.date | date:'medium'}}</td>
+            <td>{{error.site}}</td>
+            <td>{{error.message}}</td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <th>Number</th>
+            <th>Date</th>
+            <th>Site</th>
+            <th>Error Message</th>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+  </div>
+</div>
