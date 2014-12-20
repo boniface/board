@@ -19,7 +19,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .constant('baseURL', 'http://localhost:8080/api/')
+  .constant('baseURL', '/api/')
   .config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(false);
     $routeProvider
