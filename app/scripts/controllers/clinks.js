@@ -8,9 +8,8 @@
  * Controller of the boardApp
  */
 angular.module('boardApp')
-  .controller('ClinksCtrl', function ($scope, $http, baseURL)  {
+  .controller('ClinksCtrl', function ($scope, $http, baseURL, $location)  {
 
-    var z = $scope.selectedZone='ZM';
 
     $scope.listZones = function () {
       var url = baseURL + 'zones';
@@ -29,7 +28,12 @@ angular.module('boardApp')
 
     $scope.listZones();
 
-    $scope.customLinks(z);
+    $scope.updatedClinks = function(code) {
+      $scope.zone=code;
+      $scope.customLinks(code);
+      $location.path('/hash/clinks');
+    };
+
 
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

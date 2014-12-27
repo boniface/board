@@ -8,7 +8,7 @@
  * Controller of the boardApp
  */
 angular.module('boardApp')
-  .controller('PostsCtrl',function ($scope, $http, baseURL)  {
+  .controller('PostsCtrl',function ($scope, $http, baseURL,$location)  {
 
 
     $scope.listZones = function () {
@@ -26,7 +26,11 @@ angular.module('boardApp')
       });
     };
 
-    $scope.zonePosts('ZM');
+    $scope.updatedPosts = function(code) {
+      $scope.zone=code;
+      $scope.zonePosts(code);
+      $location.path('/hash/links');
+    };
 
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

@@ -8,7 +8,7 @@
  * Controller of the boardApp
  */
 angular.module('boardApp')
-  .controller('ErrorsCtrl', function ($scope, $http, baseURL)  {
+  .controller('ErrorsCtrl', function ($scope, $http, baseURL,$location)  {
 
     $scope.listZones = function () {
       var url = baseURL + 'zones';
@@ -27,7 +27,13 @@ angular.module('boardApp')
       });
     };
 
-    $scope.zoneRrrors('ZM');
+    $scope.updatedErrors = function(code) {
+      $scope.zone=code;
+      $scope.zoneRrrors(code);
+      $location.path('/hash/errors');
+    };
+
+
 
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

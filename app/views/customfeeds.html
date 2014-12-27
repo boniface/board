@@ -75,15 +75,6 @@
                placeholder="Enter Feed Filter">
       </div>
 
-      <div class="form-group">
-        <label for="flag">Custom FEED Logo: </label>
-        <input type="file"
-               file-model="customFeed.siteLogo"
-               class="form-control"
-               id="flag">
-
-        <p class="help-block">Add Information for The Custom FEED.</p>
-      </div>
 
     </div>
 
@@ -128,7 +119,6 @@
           <th>Site Code</th>
           <th>Site</th>
           <th>Link</th>
-          <th>Edit</th>
           <th>Delete</th>
 
         </tr>
@@ -143,10 +133,7 @@
           <td>{{cfeed.siteCode}}</td>
           <td>{{cfeed.feedSite}}</td>
           <td>{{cfeed.feedLink}}</td>
-          <td><button class="btn btn-xs btn-primary"
-                      ng-click="editFeed(cfeed)">
-            Edit
-          </button></td>
+
           <td><button class="btn btn-xs btn-primary"
                       ng-click="deleteFeed(cfeed)">
             Delete
@@ -163,7 +150,6 @@
           <th>Site Code</th>
           <th>Site</th>
           <th>Link</th>
-          <th>Edit</th>
           <th>Delete</th>
         </tr>
         </tfoot>

@@ -6,7 +6,7 @@
     <div class="box-body">
       <select ng-model="selectedItem"
               ng-options="zone.name for zone in zones"
-              ng-change="update(selectedItem.code)">
+              ng-change="updatedErrors(selectedItem.code)">
       </select>
     </div>
   </form>

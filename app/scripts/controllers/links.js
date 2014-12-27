@@ -8,7 +8,8 @@
  * Controller of the boardApp
  */
 angular.module('boardApp')
-  .controller('LinksCtrl', function ($scope, $http, baseURL)  {
+  .controller('LinksCtrl', function ($scope, $http, baseURL, $location)  {
+    $scope.sitezone ='';
 
     $scope.listZones = function () {
       var url = baseURL + 'zones';
@@ -18,6 +19,7 @@ angular.module('boardApp')
     };
     $scope.listZones();
 
+
     $scope.feedLinks = function (zone) {
       var url = baseURL + 'stats/links/'+zone;
       $http.get(url).success(function (data) {
@@ -25,7 +27,13 @@ angular.module('boardApp')
       });
     };
 
-    $scope.feedLinks('ZM');
+    $scope.updatedFeeds = function(code) {
+      $scope.zone=code;
+      $scope.feedLinks(code);
+      $location.path('/hash/links');
+    };
+
+
 
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

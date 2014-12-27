@@ -1,12 +1,12 @@
 <div class="box box-primary" ng-controller="LinksCtrl">
   <div class="box-header">
-    <h3 class="box-title">Manage  Custom News Feeds</h3>
+    <h3 class="box-title">Collected  News Feed Links</h3>
   </div>
   <form  role="form" class="css-form">
     <div class="box-body">
       <select ng-model="selectedItem"
               ng-options="zone.name for zone in zones"
-              ng-change="update(selectedItem.code)">
+              ng-change="updatedFeeds(selectedItem.code)">
       </select>
     </div>
   </form>
