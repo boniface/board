@@ -19,6 +19,14 @@ angular.module('boardApp')
       });
     };
 
+    $scope.listZones = function () {
+      var url = baseURL + 'zones';
+      $http.get(url).success(function (data) {
+        $scope.zones = data;
+      });
+    };
+    $scope.listZones();
+
     // /api/cfeed/create/:zone
 
     $scope.createFeed = function (customFeed) {

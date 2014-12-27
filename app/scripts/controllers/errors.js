@@ -17,6 +17,8 @@ angular.module('boardApp')
       });
     };
 
+    $scope.listZones();
+
 
     $scope.zoneRrrors = function (zone) {
       var url = baseURL + 'stats/errors/'+zone;

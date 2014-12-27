@@ -16,6 +16,7 @@ angular.module('boardApp')
         $scope.zones = data;
       });
     };
+    $scope.listZones();
 
     $scope.feedLinks = function (zone) {
       var url = baseURL + 'stats/links/'+zone;

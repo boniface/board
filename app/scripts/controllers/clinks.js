@@ -18,6 +18,7 @@ angular.module('boardApp')
         $scope.zones = data;
       });
     };
+    $scope.listZones();
 
     $scope.customLinks = function (zone) {
       var url = baseURL + 'stats/clinks/'+zone;

@@ -1,52 +1,51 @@
 <!-- general form elements -->
 <div class="box box-primary" ng-controller="SitesCtrl">
+
   <div class="box-header">
-    <h3 class="box-title">Add Site</h3>
+    <h3 class="box-title">Select Zone</h3>
   </div>
-  <!-- /.box-header -->
-  <!-- form start -->
+
   <form novalidate name="siteForm" role="form" class="css-form">
     <div class="box-body">
+      <select ng-model="selectedItem"
+              ng-options="zone.name for zone in zones"
+              ng-change="update(selectedItem.code)">
+      </select>
+      </div>
+  </form>
+
+  <div class="btn-group btn-group-lg pull-right" ng-if="selectedItem.name!=null">
+     <button class="btn btn-primary btn-lg" >Managing zone {{selectedItem.name}}</button>
+    <p>
+  </div>
+
+
+  <!-- /.box-header -->
+  <hr/>
+
+  <!-- /.box-header -->
+  <!-- form start -->
+  <form novalidate name="siteForm" role="form" class="css-form" ng-if="selectedItem.name!=null">
+    <div class="box-body">
       <div class="form-group">
-        <label for="name">SITE Name: </label>
+        <label for="code">SITE code: </label>
         <input type="text"
-               ng-model="site.name" required="true"
+               ng-model="site.code" required="true"
                autocomplete="off"
+               ng-minlength="2"
+               ng-maxlength="2"
                class="form-control"
-               id="name"
+               id="code"
                placeholder="Enter Site Name">
       </div>
       <div class="form-group">
-        <label for="url">SITE URL: </label>
+        <label for="url">SITE url: </label>
         <input type="text"
                ng-model="site.url" required="true"
                autocomplete="off"
                class="form-control"
                id="url"
                placeholder="Enter Site URL">
-      </div>
-
-      <div class="form-group">
-        <label for="name">SITE Description: </label>
-        <input type="text"
-               ng-model="site.description" required="true"
-               autocomplete="off"
-               class="form-control"
-               id="description"
-               placeholder="Enter Site Name">
-      </div>
-
-
-      <div class="form-group">
-        <label for="zone">ZONE Code: </label>
-        <input type="text"
-               ng-model="site.zone" required="true"
-               autocomplete="off"
-               ng-minlength="2"
-               ng-maxlength="2"
-               class="form-control"
-               id="zone"
-               placeholder="Enter Code">
       </div>
 
       <div class="form-group">
@@ -97,12 +96,9 @@
           <th>Number</th>
           <th>Logo</th>
           <th>Zone</th>
-          <th>Name</th>
+          <th>Code</th>
           <th>URL</th>
-          <th>Description</th>
-          <th>Edit</th>
           <th>Delete</th>
-
         </tr>
         </thead>
         <tbody ng-repeat="site in sites track by $index">
@@ -111,17 +107,15 @@
           <td>{{$index+1}}</td>
           <td>{{site.logo}}</td>
           <td>{{site.zone}}</td>
-          <td>{{site.name}}</td>
+          <td>{{site.code}}</td>
           <td>{{site.url}}</td>
-          <td>{{site.description}}</td>
-          <td><button class="btn btn-xs btn-primary"
-                      ng-click="editSite(site)">
-            Edit
-          </button></td>
-          <td><button class="btn btn-xs btn-primary"
-                      ng-click="deleteSite(site)">
-            Delete
-          </button></td>
+
+          <td>
+            <button class="btn btn-xs btn-primary"
+                    ng-click="deleteSite(site)">
+              Delete
+            </button>
+          </td>
         </tr>
 
         </tbody>
@@ -130,10 +124,8 @@
           <th>Number</th>
           <th>Logo</th>
           <th>Zone</th>
-          <th>Name</th>
+          <th>Code</th>
           <th>URL</th>
-          <th>Description</th>
-          <th>Edit</th>
           <th>Delete</th>
         </tr>
         </tfoot>

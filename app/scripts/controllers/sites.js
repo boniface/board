@@ -8,12 +8,28 @@
  * Controller of the boardApp
  */
 angular.module('boardApp')
-  .controller('SitesCtrl', function ($scope,$http,baseURL) {
+  .controller('SitesCtrl', function ($scope,$http,baseURL,$location) {
     $scope.submitButtonMode = 'Save Site';
+    $scope.zone ='';
+    $scope.listZones = function () {
+      var url = baseURL + 'zones';
+      $http.get(url).success(function (data) {
+        $scope.zones = data;
+      });
+    };
+    $scope.listZones();
+
+    $scope.update = function(code) {
+      $scope.zone=code;
+      $scope.listSites(code);
+      $location.path('/hash/sites');
+    };
 
 
-    $scope.listSites = function(){
-      var url = baseURL+'sites/all/0';
+
+
+    $scope.listSites = function(zone){
+      var url = baseURL+'sites/'+zone;
       $http.get(url).success(function(data){
         $scope.sites = data;
       });
@@ -24,6 +40,7 @@ angular.module('boardApp')
       var URL = baseURL + 'site/create/';
       $scope.sform = site;
       $scope.sform.logo = 'none';
+      $scope.sform.zone = $scope.zone;
       $http.post(
         URL + site.zone,   site)
         .success(function (newSite) {
@@ -62,7 +79,7 @@ angular.module('boardApp')
       var URL = baseURL+'site/delete/'+site.zone+'/';
       $http({
         method: 'DELETE',
-        url: URL + site.id
+        url: URL + site.url
       }).success(function () {
         $scope.sites.splice($scope.sites.indexOf(site), 1);
       });
@@ -98,7 +115,7 @@ angular.module('boardApp')
 
     };
 
-    $scope.listSites();
+
 
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

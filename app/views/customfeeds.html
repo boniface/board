@@ -1,8 +1,25 @@
 <!-- general form elements -->
 <div class="box box-primary" ng-controller="CustomfeedsCtrl">
   <div class="box-header">
-    <h3 class="box-title">Add Custom Feed</h3>
+    <h3 class="box-title">Manage  Custom News Feeds</h3>
   </div>
+  <form  role="form" class="css-form">
+    <div class="box-body">
+      <select ng-model="selectedItem"
+              ng-options="zone.name for zone in zones"
+              ng-change="update(selectedItem.code)">
+      </select>
+    </div>
+  </form>
+
+  <div class="btn-group btn-group-lg pull-right" ng-if="selectedItem.name!=null">
+    <button class="btn btn-primary btn-lg" >Managing zone {{selectedItem.name}}</button>
+    <p>
+  </div>
+
+
+  <!-- /.box-header -->
+  <hr/>
   <!-- /.box-header -->
   <!-- form start -->
   <form novalidate name="customFeedForm" role="form" class="css-form">
