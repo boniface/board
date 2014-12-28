@@ -79,8 +79,7 @@ angular.module('boardApp')
         .success(function (newFeed) {
           $scope.feeds.push(newFeed);
           $scope.feed = {};
-          $scope.feedForm.$setPristine();
-
+          $scope.feedForm={};
         });
     };
 

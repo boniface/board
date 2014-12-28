@@ -33,8 +33,6 @@ angular.module('boardApp')
       $location.path('/hash/links');
     };
 
-
-
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

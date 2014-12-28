@@ -1,9 +1,9 @@
 <!-- general form elements -->
 <div class="box box-primary" ng-controller="CustomfeedsCtrl">
   <div class="box-header">
-    <h3 class="box-title">Manage  Custom News Feeds</h3>
+    <h3 class="box-title">Manage Custom News Feeds</h3>
   </div>
-  <form  role="form" class="css-form">
+  <form role="form" class="css-form">
     <div class="box-body">
       <select ng-model="selectedItem"
               ng-options="zone.name for zone in zones"
@@ -13,7 +13,7 @@
   </form>
 
   <div class="btn-group btn-group-lg pull-right" ng-if="selectedItem.name!=null">
-    <button class="btn btn-primary btn-lg" >Managing zone {{selectedItem.name}}</button>
+    <button class="btn btn-primary btn-lg">Managing zone {{selectedItem.name}}</button>
     <p>
   </div>
 
@@ -22,30 +22,20 @@
   <hr/>
   <!-- /.box-header -->
   <!-- form start -->
-  <form novalidate name="customFeedForm" role="form" class="css-form">
+  <form novalidate name="customFeedForm" role="form" class="css-form" ng-if="selectedItem.name!=null">
     <div class="box-body">
       <div class="form-group">
-        <label for="customFeedZone">Custom FEED Zone: </label>
-        <input type="text"
-               ng-model="customFeed.zone" required="true"
-               autocomplete="off"
-               ng-minlength="2"
-               ng-maxlength="2"
-               class="form-control"
-               id="customFeedZone"
-               placeholder="Enter Feed Zone">
+        <label for="siteCode">Feed Site: </label>
+        <select ng-model="customFeed.feedSite" required="true"
+                ng-options="site.url for site in sites"
+                ng-change="sitedata(customFeed.feedSite)"
+                class="form-control"
+                class="form-control"
+                id="siteCode"
+                placeholder="Select Site">
+        </select>
       </div>
-      <div class="form-group">
-        <label for="siteCode">Custom SITE Code: </label>
-        <input type="text"
-               ng-model="customFeed.siteCode" required="true"
-               autocomplete="off"
-               ng-minlength="2"
-               ng-maxlength="2"
-               class="form-control"
-               id="siteCode"
-               placeholder="Enter Site Code">
-      </div>
+
       <div class="form-group">
         <label for="feedLink">Custom FEED Link: </label>
         <input type="text"
@@ -55,29 +45,16 @@
                id="feedLink"
                placeholder="Enter Feed Link">
       </div>
-
-      <div class="form-group">
-        <label for="feedSite">Custom FEED Site: </label>
-        <input type="text"
-               ng-model="customFeed.feedSite" required="true"
-               autocomplete="off"
-               class="form-control"
-               id="feedSite"
-               placeholder="Enter Feed Type">
-      </div>
-      <div class="form-group">
-        <label for="feedFilter">Custom FEED Filter: </label>
-        <input type="text"
-               ng-model="customFeed.filter" required="true"
-               autocomplete="off"
-               class="form-control"
-               id="feedFilter"
-               placeholder="Enter Feed Filter">
-      </div>
-
-
     </div>
-
+    <div class="form-group">
+      <label for="feedFilter">Filter: </label>
+      <input type="text"
+             ng-model="customFeed.filter" required="true"
+             autocomplete="off"
+             class="form-control"
+             id="feedFilter"
+             placeholder="Enter Feed Filter">
+    </div>
 
     <div class="btn-group btn-group-lg">
       <button name="submit"
@@ -134,10 +111,12 @@
           <td>{{cfeed.feedSite}}</td>
           <td>{{cfeed.feedLink}}</td>
 
-          <td><button class="btn btn-xs btn-primary"
-                      ng-click="deleteFeed(cfeed)">
-            Delete
-          </button></td>
+          <td>
+            <button class="btn btn-xs btn-primary"
+                    ng-click="deleteFeed(cfeed)">
+              Delete
+            </button>
+          </td>
         </tr>
 
         </tbody>

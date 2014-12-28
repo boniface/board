@@ -8,12 +8,36 @@
  * Controller of the boardApp
  */
 angular.module('boardApp')
-  .controller('CustomfeedsCtrl', function ($scope, $http, baseURL) {
+  .controller('CustomfeedsCtrl', function ($scope, $http, baseURL, $location) {
     $scope.submitButtonMode = 'Save Feed';
+    $scope.sitecode = '';
+    $scope.siteurl = '';
+    $scope.sitezone = '';
+
+    $scope.sitedata = function (site) {
+      $scope.sitecode = site.code;
+      $scope.siteurl = site.url;
+      $scope.sitezone = site.zone;
+
+    };
+
+    $scope.listSites = function (zone) {
+      var url = baseURL + 'sites/' + zone;
+      $http.get(url).success(function (data) {
+        $scope.sites = data;
+      });
+    };
 
 //    /api/cfeeds
-    $scope.listFeeds = function () {
-      var url = baseURL + 'cfeeds';
+    $scope.update = function (code) {
+      $scope.zone = code;
+      $scope.listFeeds(code);
+      $scope.listSites(code);
+      $location.path('/hash/customfeeds');
+    };
+
+    $scope.listFeeds = function (zone) {
+      var url = baseURL + 'cfeeds/' + zone;
       $http.get(url).success(function (data) {
         $scope.cfeeds = data;
       });
@@ -34,11 +58,15 @@ angular.module('boardApp')
       var URL = baseURL + 'cfeed/create/';
       $scope.customFeed = customFeed;
       $scope.customFeed.siteLogo = 'none';
-      $http.post(URL + customFeed.zone,customFeed)
+      $scope.customFeed.zone = $scope.sitezone;
+      $scope.customFeed.siteCode = $scope.sitecode;
+      $scope.customFeed.feedSite = $scope.siteurl;
+
+      $http.post(URL + customFeed.zone, customFeed)
         .success(function (newFeed) {
           $scope.cfeeds.push(newFeed);
           $scope.customFeed = {};
-          $scope.customFeedForm.$setPristine();
+          $scope.customFeedForm={};
 
         });
     };
@@ -68,7 +96,7 @@ angular.module('boardApp')
       var URL = baseURL + 'cfeed/delete/';
       $http({
         method: 'DELETE',
-        url: URL + customFeed.zone + '/' + customFeed.siteCode +'/'+customFeed.id
+        url: URL + customFeed.zone + '/' + customFeed.siteCode + '/' + customFeed.id
       }).success(function () {
         $scope.cfeeds.splice($scope.cfeeds.indexOf(customFeed), 1);
       });
