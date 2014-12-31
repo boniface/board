@@ -15,6 +15,7 @@ angular.module('boardApp')
     $scope.feedtype ='';
     $scope.sitezone ='';
 
+
     $scope.feedTypes = [
       {name:'RSS FEED', value:'RSS'},
       {name:'ATOM FEED', value:'ATOM'}
@@ -79,7 +80,8 @@ angular.module('boardApp')
         .success(function (newFeed) {
           $scope.feeds.push(newFeed);
           $scope.feed = {};
-          $scope.feedForm={};
+          $scope.feedForm.$setPristine();
+
         });
     };
 
@@ -138,8 +140,10 @@ angular.module('boardApp')
     };
 
     $scope.resetFeed = function () {
+
       $scope.feed = {};
-      $scope.feedForm.$setPristine();
+      //$scope.feedForm.$setPristine();
+      $scope.feedForm = angular.copy($scope.feed);
       $scope.submitButtonMode = 'Save Feed';
 
     };

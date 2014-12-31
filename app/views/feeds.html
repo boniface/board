@@ -3,14 +3,14 @@
   <div class="box-header">
     <h3 class="box-title">Manage New Feeds</h3>
   </div>
-  <form role="form" class="css-form">
+
     <div class="box-body">
       <select ng-model="selectedItem"
               ng-options="zone.name for zone in zones"
               ng-change="update(selectedItem.code)">
       </select>
     </div>
-  </form>
+
 
   <div class="btn-group btn-group-lg pull-left" ng-if="selectedItem.name!=null">
     <button class="btn btn-primary btn-lg">Managing zone {{selectedItem.name}}</button>
@@ -25,20 +25,22 @@
   <form novalidate name="feedForm" role="form" class="css-form" ng-if="selectedItem.name!=null">
     <div class="box-body">
       <div class="form-group">
-        <label for="siteCode">Feed Site: </label>
-        <select ng-model="feed.feedSite" required="true"
+        <label for="feedSite">Feed Site: </label>
+        <select ng-model="feed.feedSite"
+                required="true"
                 ng-options="site.url for site in sites"
                 ng-change="sitedata(feed.feedSite)"
                 class="form-control"
                 class="form-control"
-                id="siteCode"
+                id="feedSite"
                 placeholder="Select Site">
         </select>
       </div>
       <div class="form-group">
         <label for="feedType">FEED Type: </label>
         <select
-          ng-model="feed.feedType" required="true"
+          ng-model="feed.feedType"
+          required="true"
           autocomplete="off"
           class="form-control"
           id="feedType"
@@ -47,17 +49,19 @@
           placeholder="Select Feed Type">
         </select>
       </div>
+
       <div class="form-group">
         <label for="feedLink">FEED Link: </label>
         <input type="text"
-               ng-model="feed.feedLink" required="true"
+               ng-model="feed.feedLink"
+               required="true"
                autocomplete="off"
                class="form-control"
                id="feedLink"
                placeholder="Enter Feed Link">
       </div>
-    </div>
 
+       </div>
     <div class="btn-group btn-group-lg">
       <button name="submit"
               type="button"

@@ -48,6 +48,7 @@ angular.module('boardApp')
           $scope.site = {};
           $scope.siteForm.$setPristine();
 
+
         });
     };
 
